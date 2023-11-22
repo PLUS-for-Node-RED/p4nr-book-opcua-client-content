@@ -1,0 +1,19 @@
+{
+    "opcuaItems": [
+        {
+            "nodeId": "ns=4;i=1002",
+            "attributeId": 13,
+            "value": {
+                "value": {
+                    "value": "test1234",
+                    "dataType": 12
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "parameters": {},
+        "hasOpcuaItems": true,
+        "opcuaItemsLength": 1
+    }
+}

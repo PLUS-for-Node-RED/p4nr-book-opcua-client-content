@@ -1,0 +1,20 @@
+{
+    "opcuaItems": [
+        {
+            "nodeId": "ns=0;i=2253"
+        }
+    ],
+    "metadata": {
+        "hasOpcuaItems": true,
+        "opcuaItemsLength": 1,
+        "parameters": {
+            "recursive": false,
+            "referenceTypeId": null,
+            "includeSubtypes": true,
+            "nodeClassMask": 0,
+            "resultMask": 63,
+            "browseDirection": 0,
+            "recursiveDepth": 1
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "opcuaItems":[
+        {
+            "nodeId":"ns=9999;i=1"
+        },
+        {
+            "nodeId":"ns=9999;i=2"
+        }
+    ],
+    "metadata":{
+        "hasOpcuaItems":true,
+        "opcuaItemsLength":2,
+        "parameters":{
+            "toAlias":false
+        }
+    }
+}

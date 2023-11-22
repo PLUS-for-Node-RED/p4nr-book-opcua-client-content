@@ -1,0 +1,19 @@
+{
+    "opcuaItems":[
+        {
+            "nodeId":"ns=4;i=1001",
+            "attributeId":13
+        },
+        {
+            "nodeId":"ns=4;i=1002",
+            "attributeId":13
+        }
+    ],
+    "metadata":{
+        "hasOpcuaItems":true,
+        "opcuaItemsLength":2,
+        "parameters":{
+            "toAlias":true
+        }
+    }
+}

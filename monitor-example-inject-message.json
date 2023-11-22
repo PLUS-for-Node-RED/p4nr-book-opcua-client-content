@@ -1,0 +1,25 @@
+{
+    "opcuaItems": [
+        {
+            "nodeId": "ns=4;i=1001"
+        }
+    ],
+    "metadata": {
+        "hasOpcuaItems": true,
+        "opcuaItemsLength": 1,
+        "parameters": {
+            "priority": 1,
+            "maxNotificationsPerPublish": 0,
+            "requestedLifetimeCount": 60,
+            "requestedMaxKeepAliveCount": 10,
+            "publishingEnabled": true,
+            "requestedPublishingInterval": 1000,
+            "groupedMonitoring": true,
+            "discardOldest": true,
+            "queueSize": 10000,
+            "samplingInterval": 1000,
+            "filter": null,
+            "clientHandle": null
+        }
+    }
+}

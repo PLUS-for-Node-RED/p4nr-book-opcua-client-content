@@ -1,0 +1,22 @@
+{
+    "opcuaItems":[
+        {
+            "nodeId":"ns=9999;i=1",
+            "attributeId":13,
+            "isAlias":true
+        },
+        {
+            "nodeId":"ns=9999;i=2",
+            "attributeId":13,
+            "isAlias":true
+        }
+    ],
+    "metadata":{
+        "hasOpcuaItems":true,
+        "opcuaItemsLength":2,
+        "parameters":{
+            "toAlias":true
+        },
+        "serviceType":"alias"
+    }
+}

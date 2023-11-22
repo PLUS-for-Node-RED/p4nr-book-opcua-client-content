@@ -1,0 +1,20 @@
+{
+    "opcuaItems":[
+        {
+            "nodeId":"ns=9999;i=1",
+            "registered":true
+        },
+        {
+            "nodeId":"ns=9999;i=2",
+            "registered":true
+        }
+    ],
+    "metadata":{
+        "hasOpcuaItems":true,
+        "opcuaItemsLength":2,
+        "parameters":{
+            
+        },
+        "serviceType":"register"
+    }
+}

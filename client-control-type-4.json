@@ -1,0 +1,39 @@
+{
+    "opcuaItems": [],
+    "metadata": {
+        "parameters": {
+            "controlType": 4,
+            "endpoint": "opc.tcp://localhost:14841",
+            "applicationName": "P4NR-OpcUA-Client",
+            "applicationUri": "",
+            "clientCertificateManager": null,
+            "certificateFile": null,
+            "clientName": "P4NR-OpcUA-Client",
+            "connectionStrategy": {
+                "initialDelay": 100,
+                "maxDelay": 2000,
+                "maxRetry": 10,
+                "randomisationFactor": 0.1
+            },
+            "defaultSecureTokenLifetime": 600000,
+            "discoveryUrl": "",
+            "endpointMustExist": true,
+            "keepPendingSessionsOnDisconnect": false,
+            "keepSessionAlive": true,
+            "privateKeyFile": null,
+            "requestedSessionTimeout": 60000,
+            "securityMode": 2,
+            "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#Basic256",
+            "tokenRenewalInterval": 0,
+            "userIdentityInfo": {
+                "type": 1,
+                "userName": "operator",
+                "password": "MachineOps_23."
+            },
+            "autoConnectCorrectEndpoint": true,
+            "performanceMode": 0
+        },
+        "hasOpcuaItems": false,
+        "opcuaItemsLength": 0
+    }
+}

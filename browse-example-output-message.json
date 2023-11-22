@@ -1,0 +1,33 @@
+{
+    "opcuaItems": [
+        {
+            "nodeId": "ns=0;i=2253",
+            "statusCode": {
+                "value": 0
+            },
+            "continuationPoint": null,
+            "references": [
+                {
+                    "referenceTypeId": "ns=0;i=46",
+                    "isForward": true,
+                    "nodeId": "ns=0;i=2254",
+                    "browseName": {
+                        "namespaceIndex": 0,
+                        "name": "ServerArray"
+                    },
+                    "displayName": {
+                        "text": "ServerArray"
+                    },
+                    "nodeClass": "Variable",
+                    "typeDefinition": "ns=0;i=68"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "opcuaItemsLength": 1,
+        "hasOpcuaItems": true,
+        "serviceType": "browse",
+        "parameters": {}
+    }
+}

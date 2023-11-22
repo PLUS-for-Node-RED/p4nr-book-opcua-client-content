@@ -1,0 +1,16 @@
+{
+    "opcuaItems":[
+        {
+            "nodeId":"ns=4;i=1002",
+            "_value":0,
+            "_description":"The operation succeeded.",
+            "_name":"Good"
+        }
+    ],
+    "metadata":{
+        "opcuaItemsLength":1,
+        "hasOpcuaItems":true,
+        "serviceType":"write",
+        "parameters":{}
+    }
+}
