@@ -1,0 +1,20 @@
+{
+    "opcuaItems": [
+        {
+            "name": "",
+            "nodeId": "ns=11;i=1001",
+            "datatypeName": ""
+        }
+    ],
+    "metadata": {
+        "parameters": {
+            "maxAge": 0,
+            "attributeId": 13,
+            "historyReading": true,
+            "timeSpan": 5000,
+            "startOffset": 0
+        },
+        "hasOpcuaItems": true,
+        "opcuaItemsLength": 1
+    }
+}
