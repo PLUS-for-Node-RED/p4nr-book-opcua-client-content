@@ -1,0 +1,95 @@
+{
+    "opcuaItems": [
+        {
+            "statusCode": {
+                "value": 0
+            },
+            "historyData": {
+                "dataValues": [
+                    {
+                        "value": {
+                            "dataType": "Double",
+                            "arrayType": "Scalar",
+                            "value": 26.891868496901886
+                        },
+                        "statusCode": {
+                            "value": 0
+                        },
+                        "sourceTimestamp": "2023-11-24T15:31:13.671Z",
+                        "sourcePicoseconds": 102166000,
+                        "serverTimestamp": "2023-11-24T15:31:13.671Z",
+                        "serverPicoseconds": 102166000
+                    },
+                    {
+                        "value": {
+                            "dataType": "Double",
+                            "arrayType": "Scalar",
+                            "value": 28.389139630595523
+                        },
+                        "statusCode": {
+                            "value": 0
+                        },
+                        "sourceTimestamp": "2023-11-24T15:31:14.672Z",
+                        "sourcePicoseconds": 407416000,
+                        "serverTimestamp": "2023-11-24T15:31:14.672Z",
+                        "serverPicoseconds": 407416000
+                    },
+                    {
+                        "value": {
+                            "dataType": "Double",
+                            "arrayType": "Scalar",
+                            "value": 31.014054338535882
+                        },
+                        "statusCode": {
+                            "value": 0
+                        },
+                        "sourceTimestamp": "2023-11-24T15:31:15.672Z",
+                        "sourcePicoseconds": 194176000,
+                        "serverTimestamp": "2023-11-24T15:31:15.672Z",
+                        "serverPicoseconds": 194176000
+                    },
+                    {
+                        "value": {
+                            "dataType": "Double",
+                            "arrayType": "Scalar",
+                            "value": 24.456259562012498
+                        },
+                        "statusCode": {
+                            "value": 0
+                        },
+                        "sourceTimestamp": "2023-11-24T15:31:16.673Z",
+                        "sourcePicoseconds": 952679000,
+                        "serverTimestamp": "2023-11-24T15:31:16.673Z",
+                        "serverPicoseconds": 952679000
+                    },
+                    {
+                        "value": {
+                            "dataType": "Double",
+                            "arrayType": "Scalar",
+                            "value": 29.818086344363632
+                        },
+                        "statusCode": {
+                            "value": 0
+                        },
+                        "sourceTimestamp": "2023-11-24T15:31:17.674Z",
+                        "sourcePicoseconds": 247485000,
+                        "serverTimestamp": "2023-11-24T15:31:17.674Z",
+                        "serverPicoseconds": 247485000
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "parameters": {
+            "maxAge": 0,
+            "attributeId": 13,
+            "historyReading": true,
+            "timeSpan": 5000,
+            "startOffset": 0
+        },
+        "hasOpcuaItems": true,
+        "opcuaItemsLength": 1,
+        "serviceType": "read"
+    }
+}
