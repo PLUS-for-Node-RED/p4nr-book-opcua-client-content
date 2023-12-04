@@ -1,0 +1,268 @@
+[
+  {
+    "id": "4a830375ee60ebfc",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Change Performance Mode Example Flow",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "df5757a2498385e5",
+    "type": "opcua-compact-client-control",
+    "z": "4a830375ee60ebfc",
+    "clientNode": "35802098396ec971",
+    "name": "Enterprise Client Control",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 590,
+    "y": 240,
+    "wires": [
+      [
+        "8e0b47cc61eddfa9",
+        "73ac5fc8474f3bdd"
+      ]
+    ]
+  },
+  {
+    "id": "20a81f67f7091589",
+    "type": "inject",
+    "z": "4a830375ee60ebfc",
+    "name": "Change Performance Mode to Normal",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":5,\"performanceMode\":0},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 210,
+    "y": 180,
+    "wires": [
+      [
+        "df5757a2498385e5"
+      ]
+    ]
+  },
+  {
+    "id": "8e0b47cc61eddfa9",
+    "type": "debug",
+    "z": "4a830375ee60ebfc",
+    "name": "Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1030,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "73ac5fc8474f3bdd",
+    "type": "helper",
+    "z": "4a830375ee60ebfc",
+    "name": "Enterprise Client Control Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1030,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "694cd08f1fb50c46",
+    "type": "inject",
+    "z": "4a830375ee60ebfc",
+    "name": "Change Performance Mode to Performance",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":5,\"performanceMode\":1},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 230,
+    "y": 240,
+    "wires": [
+      [
+        "df5757a2498385e5"
+      ]
+    ]
+  },
+  {
+    "id": "d1c15ab86a4bd629",
+    "type": "inject",
+    "z": "4a830375ee60ebfc",
+    "name": "Change Performance Mode to High Performance",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":5,\"performanceMode\":2},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 240,
+    "y": 300,
+    "wires": [
+      [
+        "df5757a2498385e5"
+      ]
+    ]
+  },
+  {
+    "id": "0cc443b419a8a12e",
+    "type": "comment",
+    "z": "4a830375ee60ebfc",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \\nspec server example with all servers\\nas this flow connects to the demo server\\nand machinery server.\\n\\nOptionaly, you can use your own servers \\ninstead. To do that, you either have\\nto start your servers on localhost with\\nthe ports 14840 and 14841 or change \\nthe endpoints in the client and client\\ncontrol nodes.\\n",
+    "x": 200,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "92d89fc2e2b137c5",
+    "type": "comment",
+    "z": "4a830375ee60ebfc",
+    "name": "Change the Performance Mode",
+    "info": "To change the security mode and policy, you have to use the controlType 2\nand specify the performanceMode.\nIn the example injects, you can see that the performanceMode can be of\n3 different values.\n\n- 0 is performance mode \"Normal\"\n- 1 is performance mode \"Performance\"\n- 2 is performance mode \"High Performance\"\n\nAs the name already implies, the normal performance mode is the default\nvalue.\n\nThis performance mode is not in the specification of OPC UA but a feature\nunique to the P4NR OPC UA package.\n\nIn the normal mode, the client will only open one session and use this\nsession for every service and action. But in performance mode, the client\nwill open up to 3 sessions and sorts services by types onto those 3\nsessions. This ensures that each type has the maximum performance. \nHigh performance mode is similar to the performance mode. It will let the\nclient open up to 8 sessions and spreads each service request equally onto\nthe open sessions.This makes the client take up most of the server resources\nfor this client only, so not many other client can connect besides this one.\nTherefore, it is not recommended to always and only use the high performance\nmode. Especially, since the normal and performance mode can handle most of\nthe use cases. But if you notice that either reading or writing returns\nabnormal data, we then experienced better results with our performance or\nhigh performance mode.\n",
+    "x": 190,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "5101631ac63c1e68",
+    "type": "comment",
+    "z": "4a830375ee60ebfc",
+    "name": "How to check whether the client switched modes?",
+    "info": "It is actually tricky to check whether the client switched performance\nmodes. The client restarts too fast to see in the status.\n\nHelpful for that is the status node. No matter how fast the status of the\nclient changes the status node will send a message for each status.\n\nIn this example, we only count those status messages to see if the client\nrestarts like it should. But you can react to the messages however you like. ",
+    "x": 660,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "ae73285ec4baf289",
+    "type": "status",
+    "z": "4a830375ee60ebfc",
+    "name": "Enterprise Client Control Status",
+    "scope": [
+      "df5757a2498385e5"
+    ],
+    "x": 610,
+    "y": 360,
+    "wires": [
+      [
+        "2d69086eecfa9eba",
+        "0ed4dbe05537dbc5"
+      ]
+    ]
+  },
+  {
+    "id": "2d69086eecfa9eba",
+    "type": "debug",
+    "z": "4a830375ee60ebfc",
+    "name": "Enterprise Status Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "counter",
+    "x": 1010,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "0ed4dbe05537dbc5",
+    "type": "helper",
+    "z": "4a830375ee60ebfc",
+    "name": "Enterprise Status Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "35802098396ec971",
+    "type": "opcua-compact-client",
+    "z": "4a830375ee60ebfc",
+    "name": "Enterprise Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14840",
+      "applicationName": "P4NR-OpcUA-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 20000,
+        "maxRetry": 20,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]

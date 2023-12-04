@@ -1,0 +1,217 @@
+[
+  {
+    "id": "fd73c191b2de6fbd",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Reinit Example Flow",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "1f73f7301f68992b",
+    "type": "inject",
+    "z": "fd73c191b2de6fbd",
+    "name": "Reset options to starting configuration even from ended state",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":6,\"endpoint\":\"opc.tcp://localhost:14840\",\"applicationName\":\"P4NR-OpcUA-Client\",\"applicationUri\":\"\",\"clientCertificateManager\":null,\"certificateFile\":null,\"clientName\":\"P4NR-OpcUA-Client\",\"connectionStrategy\":{\"initialDelay\":1000,\"maxDelay\":20000,\"maxRetry\":20,\"randomisationFactor\":0.1},\"defaultSecureTokenLifetime\":600000,\"discoveryUrl\":\"\",\"endpointMustExist\":false,\"keepPendingSessionsOnDisconnect\":false,\"keepSessionAlive\":true,\"privateKeyFile\":null,\"requestedSessionTimeout\":60000,\"securityMode\":1,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#None\",\"tokenRenewalInterval\":0,\"userIdentityInfo\":{\"type\":0},\"autoConnectCorrectEndpoint\":true,\"performanceMode\":0},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 340,
+    "y": 180,
+    "wires": [
+      [
+        "ca8f69db65b5a3eb"
+      ]
+    ]
+  },
+  {
+    "id": "1775d49062bd52da",
+    "type": "inject",
+    "z": "fd73c191b2de6fbd",
+    "name": "Connect to machinery server with wrong user",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":4,\"endpoint\":\"opc.tcp://localhost:14841\",\"userIdentityInfo\":{\"type\":1,\"userName\":\"wrong\",\"password\":\"wrongPassword\"}},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 290,
+    "y": 300,
+    "wires": [
+      [
+        "ca8f69db65b5a3eb"
+      ]
+    ]
+  },
+  {
+    "id": "8f53add6d21019d6",
+    "type": "inject",
+    "z": "fd73c191b2de6fbd",
+    "name": "Try to connect to nonexistent server on port 44444",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":4,\"endpoint\":\"opc.tcp://localhost:44444\",\"connectionStrategy\":{\"maxDelay\":100,\"maxRetry\":5,\"initialDelay\":10},\"userIdentityInfo\":{\"type\":1,\"userName\":\"service\",\"password\":\"MachineSvc_23_Admin.\"},\"performanceMode\":1},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 310,
+    "y": 360,
+    "wires": [
+      [
+        "ca8f69db65b5a3eb"
+      ]
+    ]
+  },
+  {
+    "id": "ca8f69db65b5a3eb",
+    "type": "opcua-compact-client-control",
+    "z": "fd73c191b2de6fbd",
+    "clientNode": "753a43c69ca73d0e",
+    "name": "Enterprise Client Control",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 750,
+    "y": 300,
+    "wires": [
+      [
+        "c101837f82b6d74a",
+        "a142d742ece53fb2"
+      ]
+    ]
+  },
+  {
+    "id": "c101837f82b6d74a",
+    "type": "debug",
+    "z": "fd73c191b2de6fbd",
+    "name": "Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "counter",
+    "x": 1110,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "a142d742ece53fb2",
+    "type": "helper",
+    "z": "fd73c191b2de6fbd",
+    "name": "Enterprise Client Control Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1110,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "afc1b93b6810c332",
+    "type": "comment",
+    "z": "fd73c191b2de6fbd",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \\nspec server example with all servers\\nas this flow connects to the demo server\\nand machinery server.\\n\\nOptionaly, you can use your own servers \\ninstead. To do that, you either have\\nto start your servers on localhost with\\nthe ports 14840 and 14841 or change \\nthe endpoints in the client and client\\ncontrol nodes.\\n",
+    "x": 260,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "dcea6fa9a7a6cc8b",
+    "type": "comment",
+    "z": "fd73c191b2de6fbd",
+    "name": "Reinitialize the client with reinit control type",
+    "info": "The difference of the control type feature\nlies in the fact that reinit clears almost\neverything inside and therefore, can also\nrecover from the state \"ended\". Normally,\none cannot change from that state because\nit is designed to be the end state. If we\narrive at that state, something either \nwent horribly wrong or it is a planned\naction to end every activity. \n\nBut sometimes, you still want to start the\nclient again. Maybe the first server broke,\nso the client timed out and went into state\nended. But you have a backup server you now\nwant to connect to without re-deploying this\nflow. That is where the reinitialization of\nthe client comes in handy.\n\nTo use reinit, you have to use the control\ntype 6. It also accepts all the parameters\nfor the client just like change options\ncontrol type, so you do not connect with the\nsame broken server or with broken options.",
+    "x": 280,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "ad698bf125145229",
+    "type": "comment",
+    "z": "fd73c191b2de6fbd",
+    "name": "Break the client to test reinit",
+    "info": "To actually see that difference in action, these\ntwo injects will break the client for you to test\nthe reinit like the real use case.",
+    "x": 240,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "753a43c69ca73d0e",
+    "type": "opcua-compact-client",
+    "z": "fd73c191b2de6fbd",
+    "name": "Enterprise Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14840",
+      "applicationName": "P4NR-OpcUA-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 20000,
+        "maxRetry": 20,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]

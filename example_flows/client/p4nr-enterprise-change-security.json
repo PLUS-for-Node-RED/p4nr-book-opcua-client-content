@@ -1,0 +1,335 @@
+[
+  {
+    "id": "42067cd94703b7c9",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Change Security Example Flow",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "2901b9c9a4f0b666",
+    "type": "group",
+    "z": "42067cd94703b7c9",
+    "style": {
+      "stroke": "#44475a",
+      "stroke-opacity": "1",
+      "fill": "#1f2937",
+      "fill-opacity": "0.5",
+      "label": true,
+      "label-position": "nw",
+      "color": "#d1d2d9"
+    },
+    "nodes": [
+      "86267ebcfec9fb2f",
+      "93417b6564dc92bb"
+    ],
+    "x": 14,
+    "y": 379,
+    "w": 332,
+    "h": 142
+  },
+  {
+    "id": "e74b79bf9d0e1626",
+    "type": "group",
+    "z": "42067cd94703b7c9",
+    "style": {
+      "stroke": "#44475a",
+      "stroke-opacity": "1",
+      "fill": "#1f2937",
+      "fill-opacity": "0.5",
+      "label": true,
+      "label-position": "nw",
+      "color": "#d1d2d9"
+    },
+    "nodes": [
+      "71c75ce890c38dad",
+      "963aaac28d8a2e9c",
+      "23a2b92732793187",
+      "662e8b0b8a483852"
+    ],
+    "x": 14,
+    "y": 99,
+    "w": 412,
+    "h": 262
+  },
+  {
+    "id": "a628c6fa9b7cb8da",
+    "type": "group",
+    "z": "42067cd94703b7c9",
+    "style": {
+      "stroke": "#44475a",
+      "stroke-opacity": "1",
+      "fill": "#1f2937",
+      "fill-opacity": "0.5",
+      "label": true,
+      "label-position": "nw",
+      "color": "#d1d2d9"
+    },
+    "nodes": [
+      "dd5f988ecc35dbbe",
+      "41e3a7cd63914839",
+      "8a8ca4d69ba377c6",
+      "c8a50624eec5694c"
+    ],
+    "x": 474,
+    "y": 219,
+    "w": 632,
+    "h": 182
+  },
+  {
+    "id": "dd5f988ecc35dbbe",
+    "type": "opcua-compact-client-control",
+    "z": "42067cd94703b7c9",
+    "g": "a628c6fa9b7cb8da",
+    "clientNode": "053de1cd85d59330",
+    "name": "Enterprise Client Control",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 610,
+    "y": 320,
+    "wires": [
+      [
+        "41e3a7cd63914839",
+        "8a8ca4d69ba377c6"
+      ]
+    ]
+  },
+  {
+    "id": "71c75ce890c38dad",
+    "type": "inject",
+    "z": "42067cd94703b7c9",
+    "g": "e74b79bf9d0e1626",
+    "name": "Change Security Options To None",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":2,\"securityMode\":1,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#None\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 200,
+    "y": 200,
+    "wires": [
+      [
+        "dd5f988ecc35dbbe"
+      ]
+    ]
+  },
+  {
+    "id": "41e3a7cd63914839",
+    "type": "debug",
+    "z": "42067cd94703b7c9",
+    "g": "a628c6fa9b7cb8da",
+    "name": "Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 930,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "8a8ca4d69ba377c6",
+    "type": "helper",
+    "z": "42067cd94703b7c9",
+    "g": "a628c6fa9b7cb8da",
+    "name": "Enterprise Client Control Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 930,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "963aaac28d8a2e9c",
+    "type": "inject",
+    "z": "42067cd94703b7c9",
+    "g": "e74b79bf9d0e1626",
+    "name": "Change Security Options To Sign",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":2,\"securityMode\":2,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#Basic256\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 260,
+    "wires": [
+      [
+        "dd5f988ecc35dbbe"
+      ]
+    ]
+  },
+  {
+    "id": "23a2b92732793187",
+    "type": "inject",
+    "z": "42067cd94703b7c9",
+    "g": "e74b79bf9d0e1626",
+    "name": "Change Security Options To Sign And Encrypt",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":2,\"securityMode\":3,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#Basic256\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 230,
+    "y": 320,
+    "wires": [
+      [
+        "dd5f988ecc35dbbe"
+      ]
+    ]
+  },
+  {
+    "id": "323f659e924ccda6",
+    "type": "comment",
+    "z": "42067cd94703b7c9",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \\nspec server example with all servers\\nas this flow connects to the demo server\\nand machinery server.\\n\\nOptionaly, you can use your own servers \\ninstead. To do that, you either have\\nto start your servers on localhost with\\nthe ports 14840 and 14841 or change \\nthe endpoints in the client and client\\ncontrol nodes.\\n",
+    "x": 200,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "662e8b0b8a483852",
+    "type": "comment",
+    "z": "42067cd94703b7c9",
+    "g": "e74b79bf9d0e1626",
+    "name": "Change Security of your connection",
+    "info": "To change the security mode and policy, you \nhave to use the controlType 2 and specify\nthe securityMode and securityPolicy.\n\nThe securityMode is a number between 1 and 3.\n\n- 1 is used for no security\n- 2 is used for signing\n- 3 is used for signing and encryption\n\nThe securityPolicy is a string with a URI to\nthe OPC Foundations definition of the policy.\n[At the node-opcua online documentation](https://node-opcua.github.io/api_doc/2.0.0/enums/securitypolicy.html), \nyou can find a link to a list with all\npossible policies for this client.\n",
+    "x": 200,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "c8a50624eec5694c",
+    "type": "comment",
+    "z": "42067cd94703b7c9",
+    "g": "a628c6fa9b7cb8da",
+    "name": "OPC UA Security",
+    "info": "Generally speaking, OPC UA has three types\nof security. None, Sign and Sign&Encrypt.\n\nThe security mode Sign will use certificates\nto sign each message so nobody can alter\nthe information without the server or client\nnoticing. \n\nThe security mode Sign&Encrypt takes this\none step further. It also will let the \nclient and server use an encryption method\nto encrypt each message. That will hinder \nanyone trying to read the messages.\n\nFor this example we used basic 256 \nencryption, because we think it is the best\nhandshake between performance and security.\nBut you can use any encryption method you \nlike.\n\nA list with all available encryption methods\ncan be found at the [node-opcua online \ndocumentation](https://node-opcua.github.io/api_doc/2.0.0/enums/securitypolicy.html)",
+    "x": 580,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "86267ebcfec9fb2f",
+    "type": "inject",
+    "z": "42067cd94703b7c9",
+    "g": "2901b9c9a4f0b666",
+    "name": "Inject Reinit with basic settings",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":6,\"endpoint\":\"opc.tcp://localhost:14840\",\"applicationName\":\"P4NR-OpcUA-Client\",\"applicationUri\":\"\",\"clientCertificateManager\":null,\"certificateFile\":null,\"clientName\":\"P4NR-OpcUA-Client\",\"connectionStrategy\":{\"initialDelay\":1000,\"maxDelay\":20000,\"maxRetry\":20,\"randomisationFactor\":0.1},\"defaultSecureTokenLifetime\":600000,\"discoveryUrl\":\"\",\"endpointMustExist\":false,\"keepPendingSessionsOnDisconnect\":false,\"keepSessionAlive\":true,\"privateKeyFile\":null,\"requestedSessionTimeout\":60000,\"securityMode\":1,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#None\",\"tokenRenewalInterval\":0,\"userIdentityInfo\":{\"type\":0},\"autoConnectCorrectEndpoint\":true,\"performanceMode\":0},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 480,
+    "wires": [
+      [
+        "dd5f988ecc35dbbe"
+      ]
+    ]
+  },
+  {
+    "id": "93417b6564dc92bb",
+    "type": "comment",
+    "z": "42067cd94703b7c9",
+    "g": "2901b9c9a4f0b666",
+    "name": "Reinit if something did not work",
+    "info": "",
+    "x": 190,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "053de1cd85d59330",
+    "type": "opcua-compact-client",
+    "name": "Enterprise Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14841",
+      "applicationName": "P4NR-OpcUA-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 20000,
+        "maxRetry": 20,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]

@@ -1,0 +1,198 @@
+[
+  {
+    "id": "cbe562c9cdbbf0fa",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Change Endpoint Example",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "256fcff9686e807c",
+    "type": "opcua-compact-client-control",
+    "z": "cbe562c9cdbbf0fa",
+    "clientNode": "869d5d109105d91a",
+    "name": "P4NR Enterprise Client Control ",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 610,
+    "y": 340,
+    "wires": [
+      [
+        "f49e2dfbaf24a72f",
+        "0b603c6d9c93a7e7"
+      ]
+    ]
+  },
+  {
+    "id": "f49e2dfbaf24a72f",
+    "type": "debug",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1070,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "0b603c6d9c93a7e7",
+    "type": "helper",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1070,
+    "y": 380,
+    "wires": []
+  },
+  {
+    "id": "5b6ac3d968ef9c1a",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \nspec server example with all servers\nas this flow connects to the demo server\nand machinery server.\n\nOptional you can use your own servers \ninstead. To do that, you either have\nto start your servers on localhost with\nthe ports 14840 and 14841 or change \nthe endpoints in the client and client\ncontrol nodes.\n",
+    "x": 260,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "3dd8d6b3119b6ada",
+    "type": "inject",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Connect to Demo Server",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "changeEndpointToDemoServer",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":1,\"endpoint\":\"opc.tcp://localhost:14840/\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 230,
+    "y": 300,
+    "wires": [
+      [
+        "256fcff9686e807c"
+      ]
+    ]
+  },
+  {
+    "id": "55180fed538dcbbc",
+    "type": "inject",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Connect to Machinery Spec Server",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "changeEndpointToDemoServer",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":1,\"endpoint\":\"opc.tcp://localhost:14841/\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 260,
+    "y": 380,
+    "wires": [
+      [
+        "256fcff9686e807c"
+      ]
+    ]
+  },
+  {
+    "id": "0157c8b2c0100c46",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Change Endpoint with controlType 1!",
+    "info": "To change an endpoint of a client, you\nhave to set the \"controlType\" to 1 in the \nparameters object as well as \"endpoint\"\nto whatever endpoint you want to \nconnect to.\n\nLeaving the endpoint property undefined\nwill use the current endpoint set in the\nclient.\n\nInjecting the same endpoint into the client\nwill NOT result in a restart of the client.\nPlease use the controlType 0 to do that.",
+    "x": 260,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "11969acf3221bee4",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Look inside the connected server with the Tree View!",
+    "info": "To check whether the client successfully connected\nto a different server, you can open the client\ncontrol node and look inside the Object tree of\nthe current connected server.\n\nThe Tree View is an excellent method to find a\nnodeId quickly or get a quick grasp of a server\nstructure directly in Node-RED and therefore, \nwithout switching tabs or windows. \n\nCurrently, because of some technical limitations\nthe Tree View is only able to look through each\nnode and its children nodes which are the parents\ncomponents or properties and which are organized \nby the parent node. If your server nodes are not\nshown, then try to add them to the components of\ntheir parent nodes. Cutsom types and more support\n will be added in the future.",
+    "x": 670,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "2891406797b9927a",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Result of the Client Control Node",
+    "info": "The Client Control returns the same message that it receives\nto know what type of message got interpreted.\n\nThere is a debug node and a helper node because we at P4NR \nensure working content with high test coverage and examples\nare also content! We dont want our examples to stay up to \ndate and working! So the helper node is for our testing \npurposes. You can safely remove that node or install the\ntestHelper package yourself.\n\nThe messages for the helper node can be viewed like the debug\nnode's messages at the top right on the button with a small\nrocket. If you do not see the rocket, you first have to click\non the downward facing arrow to see more tab options.",
+    "x": 1070,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "869d5d109105d91a",
+    "type": "opcua-compact-client",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "P4NR Enterprise CC Example Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14840",
+      "applicationName": "P4NR-OpcUA-ClientControlExample-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-ClientControlExample-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 20000,
+        "maxRetry": -1,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]

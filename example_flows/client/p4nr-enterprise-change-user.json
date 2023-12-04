@@ -1,0 +1,246 @@
+[
+  {
+    "id": "9b47294fa0939fe7",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Change User Example",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "d2e70b93d6f0c725",
+    "type": "inject",
+    "z": "9b47294fa0939fe7",
+    "name": "Connect with wrong User",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":3,\"userTokenType\":1,\"userName\":\"wrongUser\",\"password\":\"wrongPassword\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 180,
+    "wires": [
+      [
+        "9291ade9b6640888"
+      ]
+    ]
+  },
+  {
+    "id": "9291ade9b6640888",
+    "type": "opcua-compact-client-control",
+    "z": "9b47294fa0939fe7",
+    "clientNode": "c2becb57efc3e9eb",
+    "name": "P4NR Enterprise Client Control",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 610,
+    "y": 260,
+    "wires": [
+      [
+        "bfb8cf0d358b212b",
+        "676eb9c1013d429d"
+      ]
+    ]
+  },
+  {
+    "id": "bfb8cf0d358b212b",
+    "type": "debug",
+    "z": "9b47294fa0939fe7",
+    "name": "P4NR Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "counter",
+    "x": 950,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "676eb9c1013d429d",
+    "type": "helper",
+    "z": "9b47294fa0939fe7",
+    "name": "P4NR Enterprise Client Control Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 950,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "0464e6b3f3bef53d",
+    "type": "inject",
+    "z": "9b47294fa0939fe7",
+    "name": "Connect as anonymous",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":3,\"userTokenType\":0},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 180,
+    "y": 240,
+    "wires": [
+      [
+        "9291ade9b6640888"
+      ]
+    ]
+  },
+  {
+    "id": "4810e698a7c7d140",
+    "type": "inject",
+    "z": "9b47294fa0939fe7",
+    "name": "Connect with machinery User supervisor",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":3,\"userTokenType\":1,\"userName\":\"supervisor\",\"password\":\"MachineSup_23.\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 240,
+    "y": 300,
+    "wires": [
+      [
+        "9291ade9b6640888"
+      ]
+    ]
+  },
+  {
+    "id": "a82828bf1707ddc5",
+    "type": "inject",
+    "z": "9b47294fa0939fe7",
+    "name": "Connect with machinery User service",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":3,\"userTokenType\":1,\"userName\":\"service\",\"password\":\"MachineSvc_23_Admin.\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 230,
+    "y": 360,
+    "wires": [
+      [
+        "9291ade9b6640888"
+      ]
+    ]
+  },
+  {
+    "id": "c9d2c4d1a6d3a7dc",
+    "type": "comment",
+    "z": "9b47294fa0939fe7",
+    "name": "Connect with different users",
+    "info": "Each user has different roles. Each role\ncan have different rights.\n\nFor example, anonymous often has the least \namount of rights. Most of the times, anonymous\nusers can only read certain information to \nconnect with a better endpoint or get current\nstatistics of the server. But the admin can\nread, write, call methods or change important\nsettings of the server.\n\nDemo servers often have no restriction. Our\nexample servers have only some restricted nodes\nto show the principle of it. But they all have\ntheir own set of users with different roles, so\nyou only have to add restricted nodes or change\nthe settings of the server to use them.\n",
+    "x": 200,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "43684001ad4b630e",
+    "type": "comment",
+    "z": "9b47294fa0939fe7",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \\nspec server example with all servers\\nas this flow connects to the demo server\\nand machinery server.\\n\\nOptionaly, you can use your own servers \\ninstead. To do that, you either have\\nto start your servers on localhost with\\nthe ports 14840 and 14841 or change \\nthe endpoints in the client and client\\ncontrol nodes.\\n",
+    "x": 220,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "a0e9c1026c2052d8",
+    "type": "comment",
+    "z": "9b47294fa0939fe7",
+    "name": "Look at Tree View with Anonymous and Service User",
+    "info": "Because the restricted nodes can only be read\nby authenticated users and written only by\nadmins, they will not show in the tree view\nunless we connect with any user.\n\nPer default, anyone connecting the server has\nanonymous user rights. So we need to clarify\nif we want to connect as a user.",
+    "x": 670,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "c2becb57efc3e9eb",
+    "type": "opcua-compact-client",
+    "z": "9b47294fa0939fe7",
+    "name": "P4NR Enterprise Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14841",
+      "applicationName": "P4NR-OpcUA-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 20000,
+        "maxRetry": 20,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "182047f03ace0af0",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Change Settings Example Flow",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "2e840fe2c4c9d447",
+    "type": "inject",
+    "z": "182047f03ace0af0",
+    "name": "Reset options to starting configuration",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":4,\"endpoint\":\"opc.tcp://localhost:14840\",\"applicationName\":\"P4NR-OpcUA-Client\",\"applicationUri\":\"\",\"clientCertificateManager\":null,\"certificateFile\":null,\"clientName\":\"P4NR-OpcUA-Client\",\"connectionStrategy\":{\"initialDelay\":1000,\"maxDelay\":20000,\"maxRetry\":20,\"randomisationFactor\":0.1},\"defaultSecureTokenLifetime\":600000,\"discoveryUrl\":\"\",\"endpointMustExist\":false,\"keepPendingSessionsOnDisconnect\":false,\"keepSessionAlive\":true,\"privateKeyFile\":null,\"requestedSessionTimeout\":60000,\"securityMode\":1,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#None\",\"tokenRenewalInterval\":0,\"userIdentityInfo\":{\"type\":0},\"autoConnectCorrectEndpoint\":true,\"performanceMode\":0},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 270,
+    "y": 180,
+    "wires": [
+      [
+        "32b31b2f2d1a2534"
+      ]
+    ]
+  },
+  {
+    "id": "400caa81bf0e2ee0",
+    "type": "inject",
+    "z": "182047f03ace0af0",
+    "name": "Connect to machinery server with extra options",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":4,\"endpoint\":\"opc.tcp://localhost:14841\",\"applicationName\":\"P4NR-OpcUA-Client\",\"applicationUri\":\"\",\"clientCertificateManager\":null,\"certificateFile\":null,\"clientName\":\"P4NR-OpcUA-Client\",\"connectionStrategy\":{\"initialDelay\":100,\"maxDelay\":2000,\"maxRetry\":10,\"randomisationFactor\":0.1},\"defaultSecureTokenLifetime\":600000,\"discoveryUrl\":\"\",\"endpointMustExist\":true,\"keepPendingSessionsOnDisconnect\":false,\"keepSessionAlive\":true,\"privateKeyFile\":null,\"requestedSessionTimeout\":60000,\"securityMode\":2,\"securityPolicy\":\"http://opcfoundation.org/UA/SecurityPolicy#Basic256\",\"tokenRenewalInterval\":0,\"userIdentityInfo\":{\"type\":1,\"userName\":\"operator\",\"password\":\"MachineOps_23.\"},\"autoConnectCorrectEndpoint\":true,\"performanceMode\":0},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 300,
+    "y": 300,
+    "wires": [
+      [
+        "32b31b2f2d1a2534"
+      ]
+    ]
+  },
+  {
+    "id": "e6632d489ea25886",
+    "type": "inject",
+    "z": "182047f03ace0af0",
+    "name": "Connect to machinery server with other user",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":4,\"endpoint\":\"opc.tcp://localhost:14841\",\"userIdentityInfo\":{\"type\":1,\"userName\":\"service\",\"password\":\"MachineSvc_23_Admin.\"},\"performanceMode\":1},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 290,
+    "y": 420,
+    "wires": [
+      [
+        "32b31b2f2d1a2534"
+      ]
+    ]
+  },
+  {
+    "id": "32b31b2f2d1a2534",
+    "type": "opcua-compact-client-control",
+    "z": "182047f03ace0af0",
+    "clientNode": "cae214cc1e6b46be",
+    "name": "Enterprise Client Control",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 690,
+    "y": 300,
+    "wires": [
+      [
+        "46aaaa2f6dc4f22b",
+        "2eec8865a3f9fc6c"
+      ]
+    ]
+  },
+  {
+    "id": "46aaaa2f6dc4f22b",
+    "type": "debug",
+    "z": "182047f03ace0af0",
+    "name": "Enterprise Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "counter",
+    "x": 1050,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "2eec8865a3f9fc6c",
+    "type": "helper",
+    "z": "182047f03ace0af0",
+    "name": "Enterprise Client Control Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1050,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "62677ba646396314",
+    "type": "comment",
+    "z": "182047f03ace0af0",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \\nspec server example with all servers\\nas this flow connects to the demo server\\nand machinery server.\\n\\nOptionaly, you can use your own servers \\ninstead. To do that, you either have\\nto start your servers on localhost with\\nthe ports 14840 and 14841 or change \\nthe endpoints in the client and client\\ncontrol nodes.\\n",
+    "x": 260,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "293bd40ff85f8a46",
+    "type": "comment",
+    "z": "182047f03ace0af0",
+    "name": "Changing all options of the client",
+    "info": "With the controlType 4, you can change all\noptions of the client, similar on how you\nset up the client in the editor window.\n\nIt gives you the most freedom to dynamically\ncustomize the connection of your client.\n",
+    "x": 250,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "cac4d19f12de0318",
+    "type": "comment",
+    "z": "182047f03ace0af0",
+    "name": "Combine multiple client control options into one ",
+    "info": "This way, you can combine all the control\ntype features into one inject. Just change\nthe specific options however you like and\nthe client will use them like that.\n\nIn the second inject node, you can see that\nwe change the user identification, endpoint,\nsecurity options and connection strategy all\nwith one inject.",
+    "x": 300,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "a8b7b89918ac5212",
+    "type": "comment",
+    "z": "182047f03ace0af0",
+    "name": "Change only the options you want to change",
+    "info": "But you don't have to write every single \noption every time you want to change \nmultiple options at once. The client will\nkeep the options as they were if they are\nnot specified in the parameters.\n\nIn the following inject node, you can see\nthat we are only changing the user identity,\nendpoint and performance mode. The other\nproperties are not defined and will, therefore,\nnot be changed.",
+    "x": 290,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "cae214cc1e6b46be",
+    "type": "opcua-compact-client",
+    "z": "182047f03ace0af0",
+    "name": "Enterprise Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14840",
+      "applicationName": "P4NR-OpcUA-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 20000,
+        "maxRetry": 20,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]

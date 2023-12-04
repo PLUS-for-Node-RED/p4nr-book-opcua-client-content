@@ -1,0 +1,383 @@
+[
+  {
+    "id": "cbe562c9cdbbf0fa",
+    "type": "tab",
+    "label": "P4NR Enterprise Client Control Automatic Reinit Example Flow",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "f49e2dfbaf24a72f",
+    "type": "debug",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Client Control Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1420,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "0b603c6d9c93a7e7",
+    "type": "helper",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Client Control Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1420,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "5b6ac3d968ef9c1a",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Please, import the server example!",
+    "info": "For this example you will need the \nspec server example with all servers\nas this flow connects to the demo server\nand machinery server.\n\nOptionaly, you can use your own servers \ninstead. To do that, you either have\nto start your servers on localhost with\nthe ports 14840 and 14841 or change \nthe endpoints in the client and client\ncontrol nodes.\n",
+    "x": 200,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "3dd8d6b3119b6ada",
+    "type": "inject",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Connect to Demo Server",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "changeEndpointToDemoServer",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":1,\"endpoint\":\"opc.tcp://localhost:14840/\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 120,
+    "wires": [
+      [
+        "0dbb3dc53eb4600f"
+      ]
+    ]
+  },
+  {
+    "id": "55180fed538dcbbc",
+    "type": "inject",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Connect to Machinery Spec Server",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "changeEndpointToDemoServer",
+    "payload": "{\"opcuaItems\":[],\"metadata\":{\"parameters\":{\"controlType\":1,\"endpoint\":\"opc.tcp://localhost:14841/\"},\"hasOpcuaItems\":false,\"opcuaItemsLength\":0}}",
+    "payloadType": "json",
+    "x": 220,
+    "y": 180,
+    "wires": [
+      [
+        "0dbb3dc53eb4600f"
+      ]
+    ]
+  },
+  {
+    "id": "7404f304ebd5f26a",
+    "type": "inject",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Inject every 50 seconds",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "50",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "10",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 190,
+    "y": 240,
+    "wires": [
+      [
+        "09ec6cb3f5a2afc7"
+      ]
+    ]
+  },
+  {
+    "id": "09ec6cb3f5a2afc7",
+    "type": "function",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Connect to non existent server",
+    "func": "msg.payload = {\n    \"opcuaItems\": [],\n    \"metadata\": {\n        \"parameters\": {\n            \"controlType\": 1,\n            \"endpoint\": \"opc.tcp://localhost:14839/\"\n        },\n        \"hasOpcuaItems\": false,\n        \"opcuaItemsLength\": 0\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 490,
+    "y": 240,
+    "wires": [
+      [
+        "0dbb3dc53eb4600f"
+      ]
+    ]
+  },
+  {
+    "id": "4ac9c806127ff020",
+    "type": "function",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Reinit to Demo Server",
+    "func": "msg.payload = {\n    \"opcuaItems\": [],\n    \"metadata\": {\n        \"parameters\": {\n            \"controlType\": 6,\n            \"endpoint\": \"opc.tcp://localhost:14840\",\n            \"autoConnectCorrectEndpoint\": true\n        },\n        \"hasOpcuaItems\": false,\n        \"opcuaItemsLength\": 0\n    }\n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 760,
+    "y": 340,
+    "wires": [
+      [
+        "7db4ed4aeb21053e",
+        "0dbb3dc53eb4600f",
+        "f8bd5dbd5414732b"
+      ]
+    ]
+  },
+  {
+    "id": "1efb77bc8bf12237",
+    "type": "status",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "",
+    "scope": [
+      "0dbb3dc53eb4600f"
+    ],
+    "x": 120,
+    "y": 360,
+    "wires": [
+      [
+        "92c02b4decd71d95"
+      ]
+    ]
+  },
+  {
+    "id": "e5cff887054a347d",
+    "type": "debug",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "All Status Debug",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "status",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "counter",
+    "x": 750,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "7db4ed4aeb21053e",
+    "type": "debug",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Reinit Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "counter",
+    "x": 1010,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "2d7c1a54efe18a70",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "If the client ends, the client control sends out a message with a reason",
+    "info": "",
+    "x": 1190,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "ab11ad82c013a96a",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "React to client status with the status node like this",
+    "info": "",
+    "x": 240,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "a0c5a55b73fe5189",
+    "type": "comment",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Reinit the client",
+    "info": "Reinit is a control type with the value\nof 6. \n\nFor more information on Reinit, please\nimport the enterprise example of the\nbasic reinit.",
+    "x": 740,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "0dbb3dc53eb4600f",
+    "type": "opcua-compact-client-control",
+    "z": "cbe562c9cdbbf0fa",
+    "clientNode": "589c3b9c766f336f",
+    "name": "P4NR Client Control ",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "x": 1040,
+    "y": 240,
+    "wires": [
+      [
+        "f49e2dfbaf24a72f",
+        "0b603c6d9c93a7e7"
+      ]
+    ]
+  },
+  {
+    "id": "92c02b4decd71d95",
+    "type": "switch",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Only send 'ended' messages to first output",
+    "property": "status.text",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "ended",
+        "vt": "str"
+      },
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 410,
+    "y": 360,
+    "wires": [
+      [
+        "4ac9c806127ff020"
+      ],
+      [
+        "e5cff887054a347d",
+        "dec7b8da9ce03242"
+      ]
+    ]
+  },
+  {
+    "id": "dec7b8da9ce03242",
+    "type": "helper",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "All Status Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "status",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 750,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "f8bd5dbd5414732b",
+    "type": "helper",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "Reinit Helper",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1010,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "589c3b9c766f336f",
+    "type": "opcua-compact-client",
+    "z": "cbe562c9cdbbf0fa",
+    "name": "P4NR Client",
+    "clientOptions": {
+      "endpoint": "opc.tcp://localhost:14840",
+      "applicationName": "P4NR-OpcUA-Client",
+      "applicationUri": "",
+      "clientCertificateManager": null,
+      "certificateFile": null,
+      "clientName": "P4NR-OpcUA-Client",
+      "connectionStrategy": {
+        "initialDelay": 1000,
+        "maxDelay": 5000,
+        "maxRetry": 5,
+        "randomisationFactor": 0.1
+      },
+      "defaultSecureTokenLifetime": 600000,
+      "discoveryUrl": "",
+      "endpointMustExist": false,
+      "keepPendingSessionsOnDisconnect": false,
+      "keepSessionAlive": true,
+      "privateKeyFile": null,
+      "requestedSessionTimeout": 60000,
+      "securityMode": 1,
+      "securityPolicy": "http://opcfoundation.org/UA/SecurityPolicy#None",
+      "tokenRenewalInterval": 0,
+      "userIdentityInfo": {
+        "type": 0
+      },
+      "autoConnectCorrectEndpoint": true,
+      "performanceMode": 0
+    },
+    "template": "Unsecured",
+    "templateInputs": {
+      "template": "Unsecured"
+    }
+  }
+]
